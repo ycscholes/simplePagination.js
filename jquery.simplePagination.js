@@ -62,6 +62,9 @@
 		},
 
 		selectPage: function(page) {
+			var o = this.data('pagination');
+			page = (page < 1) ? 1 : (page > o.pages) ? o.pages : page;
+
 			methods._selectPage.call(this, page - 1);
 			return this;
 		},
@@ -330,6 +333,8 @@
 			if (o.selectOnClick) {
 				methods._draw.call(this);
 			}
+
+			event = event || new Event('');
 			return o.onPageClick(pageIndex + 1, event);
 		},
 
